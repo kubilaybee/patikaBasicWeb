@@ -16,3 +16,9 @@
 - [ 8 ] [ 12, 22 ]
 - [ 12 ] [ 22 ]
 - RESULT: 8,11,12,16,21,22
+
+# Binary Search Tree Algorithm
+
+- [7, 5, 1, 8, 3, 6, 0, 9, 4, 2]
+
+![img](binarySearchTree.png)
