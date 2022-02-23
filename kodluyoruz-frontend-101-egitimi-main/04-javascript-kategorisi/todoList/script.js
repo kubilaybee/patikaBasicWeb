@@ -1,63 +1,64 @@
-const textDom = document.getElementById("task");
-const ulDom = document.querySelector("ul#list");
+const TEXTDOM = document.getElementById("task");
+const ULDOM = document.querySelector("ul#list");
 
 let mainList = new Array();
-checkLocalStorage();
-
-// check local storage
-function checkLocalStorage() {
-  // is empty
-  if (localStorage.getItem("todolist") == null) {
-    localStorage.setItem("todolist", JSON.stringify(mainList));
-  } else {
-    mainList = JSON.parse(localStorage.getItem("todolist"));
-    showList();
-  }
+if (localStorage.getItem("todolist") == null) {
+  localStorage.setItem("todolist", JSON.stringify(mainList));
+} else {
+  mainList = JSON.parse(localStorage.getItem("todolist"));
+  showList();
 }
 
-// btn click
+//Button on click
 function newElement() {
-  if (isInvalid(textDom.value)) {
-    addToList(textDom.value);
+  if (isInvalid(TEXTDOM.value)) {
+    addToList(TEXTDOM.value);
   } else {
     $(document).ready(function () {
-      $("attentionToast").toast("show");
+      $("#attentionToast").toast("show");
     });
-    textDom.value = "";
+    TEXTDOM.value = "";
   }
 }
 function addToList(taskName) {
+  //Add to list
   mainList.push(String(taskName));
   console.log(mainList);
+  //Save array to localstorage
   localStorage.setItem("todolist", JSON.stringify(mainList));
+  //Show task list
   showList();
+  // toast
   $(document).ready(function () {
     $("#successToast").toast("show");
   });
-  textDom.value = "";
+  //Clear the textbox
+  TEXTDOM.value = "";
 }
 function deleteItem(index) {
   mainList.splice(index, 1);
-  localStorage.setItem("todoList", JSON.stringify(mainList));
+  localStorage.setItem("todolist", JSON.stringify(mainList));
   showList();
+  // toast
   $(document).ready(function () {
     $("#deleteItemToast").toast("show");
   });
 }
 function showList() {
-  ulDom.innerHTML = "";
-
+  ULDOM.innerHTML = "";
   mainList.forEach((task, key) => {
-    let liDom = document.createElement("li");
-    liDom.addEventListener("click", taskDone);
-    liDom.innerHTML = `$(task)<span id = "closeButton" class="deleteButton" onclick=deleteItem($(key))><i class="fas fa-trash"></i></span>`;
-    ulDom.append(liDom);
+    let liDOM = document.createElement("li");
+    liDOM.addEventListener("click", taskDone);
+    liDOM.innerHTML = `${task}<span id="closeButton" class="deleteButton" onclick=deleteItem(${key})><i class="fas fa-trash"></i></span>`;
+
+    ULDOM.append(liDOM);
   });
 }
 function isInvalid(task) {
-  let res = task.trim ? true : false;
+  let res = task.trim() ? true : false;
   return res;
 }
 function taskDone() {
+  //Change with boostrap succes style
   this.classList.toggle("bg-success");
 }
