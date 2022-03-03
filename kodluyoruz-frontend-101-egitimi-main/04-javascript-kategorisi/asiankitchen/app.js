@@ -86,6 +86,7 @@ let cleanCategories = removeDuplicates(categories);
 
 cleanCategories.unshift("All");
 
+// create categories
 function createBtns() {
   cleanCategories.forEach((cleanCategories) => {
     let btn = document.createElement("button");
@@ -98,3 +99,31 @@ function createBtns() {
   });
 }
 createBtns();
+
+// create elements
+function createMenuItems(menu) {
+  menu.forEach((item) => {
+    let menuItem = document.createElement("div");
+    menuItem.setAttribute("class", "menu-item col-6");
+    menuItem.setAttribute("data-id", item.id);
+    menuItem.innerHTML = `
+    <div class="menu-items">
+      <img
+      src=${item.img}
+      alt=${item.title}
+      class="photo"
+      />
+      <div class="menu-info">
+        <div class="menu-title">
+          <h4>${item.title}</h4>
+          <h4 class="price">${item.price}</h4>
+        </div>
+        <div class="menu-text">
+          ${item.desc}
+        </div>
+      </div>
+    </div>`;
+    section.appendChild(menuItem);
+  });
+}
+createMenuItems(menu);
