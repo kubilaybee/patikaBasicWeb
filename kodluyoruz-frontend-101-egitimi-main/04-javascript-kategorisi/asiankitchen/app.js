@@ -130,4 +130,40 @@ createMenuItems(menu);
 
 // get categorized
 
-function
+// korean category
+function Korean() {
+  document.getElementById("Korea").addEventListener("click", () => {
+    let korean = menu.filter((item) => item.category === "Korea");
+    section.innerHTML = "";
+    createMenuItems(korean);
+  });
+}
+Korean();
+
+// Japan category
+function Japan() {
+  document.getElementById("Japan").addEventListener("click", () => {
+    let japanese = menu.filter((item) => item.category === "Japan");
+    section.innerHTML = "";
+    createMenuItems(japanese);
+  });
+}
+Japan();
+
+// China category
+function China() {
+  document.getElementById("China").addEventListener("click", () => {
+    let chinese = menu.filter((item) => item.category === "China");
+    section.innerHTML = "";
+    createMenuItems(chinese);
+  });
+}
+China();
+
+// All category
+function All() {
+  document.getElementById("All").addEventListener("click", () => {
+    createMenuItems(menu);
+  });
+}
+All();
